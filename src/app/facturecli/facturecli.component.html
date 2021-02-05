@@ -1,0 +1,234 @@
+<section id="cart_items">
+    <div class="container">
+        <div style="padding-top: 15px;">
+            <a class="btn btn-primary" href="" data-toggle="modal" data-target="#addClientModal">
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
+                Ajouter client</a>
+        </div>
+        <!---------------
+            
+            ---------- client list Table ------------------------------------------------>
+        <div class="row">
+
+
+            <div class="col-sm-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Listes des clients</h2>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th *ngFor="let c of headersTable" scope="col">
+                                        <div>{{c}}</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of data">
+                                    <td *ngFor="let column of headersTable">
+                                        <div [ngSwitch]="column">
+                                            <div *ngSwitchCase="'Details'">
+                                                <div class="edit">
+                                                    <a data-toggle="modal" data-target="#factureClientModal"
+                                                        (click)="getClient(row['id_tr'])"><i
+                                                            class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div *ngSwitchCase="'created_at'">
+                                                {{row[column] | date: 'dd/MM/yyyy HH:MM:ss'}}</div>
+
+                                            <div *ngSwitchDefault>{{row[column]}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!------------------------- END client list Table ------------------------------------>
+
+        <!--------------------------- addClientModal ----------------------------------------->
+        <div class="modal fade bd-example-modal-lg" id="addClientModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nouveau Client</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span id="basic-addon1">
+                                                <i class="fa fa-building fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="client"
+                                            placeholder="Client" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" (click)="addTransaction()" data-dismiss="modal"
+                            class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade bd-example-modal-lg" id="factureClientModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content" style="width: 100%;">
+                    <div class="modal-header">
+                        <h4>Liste des transactions</h4>
+                    </div>
+                    <div class="container p-3" style="width: 500px;">
+                        <div class="row">
+                            <div class="col-12">
+                                <form>
+                                    <div class="card">
+
+                                        <button onClick="imprimer('sectionAimprimer')">Imprimer</button>
+                                        <div id='sectionAimprimer'>
+                                            <div id="page-wrap" style="padding-left: 25px!important;">
+                                                <h1 style="text-align: center ;">{{data3.client}}</h1>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="form-group col-12"
+                                                            style="padding-right: 25px;padding-left: 20px!important;">
+
+
+
+                                                        </div>
+
+                                                        <table class="table">
+                                                            <thead class="thead-dark">
+                                                                <tr>
+                                                                    <th *ngFor="let c of headers" scope="col">
+                                                                        <div>{{c}}</div>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr *ngFor="let row of data2">
+                                                                    <td *ngFor="let column of headers">
+                                                                        <div [ngSwitch]="column">
+                                                                            <div *ngSwitchCase="'edit'">
+                                                                                <div class="edit">
+                                                                                    <a href=""><i
+                                                                                            class="fa fa-pencil-square-o fa-lg"
+                                                                                            aria-hidden="true"></i></a>
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <div *ngSwitchCase="'created_at'">
+                                                                                {{row[column] | date: 'dd/MM/yyyy HH:MM:ss'}}
+                                                                            </div>
+
+                                                                            <div *ngSwitchDefault>{{row[column]}}</div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                    <h3 style="padding-top: 10px;">Nouvelle transaction </h3>
+
+                                    <div class="card-body">
+                                        <div class="row" style="padding-left: 6px;">
+                                            <div class="col-6">
+                                                <div class="row">
+
+                                                    <div class="form-group col-6">
+                                                        <label>Montant facture</label>
+                                                        <input class="form-control" [(ngModel)]="reste" name="reste"
+                                                            type="text" style="width: 30%;">
+
+                                                    </div>
+                                                    <div class="form-group col-6">
+                                                        <label>Montant à payer</label>
+                                                        <input class="form-control" [(ngModel)]="payee" name="payee"
+                                                            type="text" style="width: 30%;">
+
+                                                    </div>
+
+                                                    <div class="form-group col-6">
+                                                        <label>ancien_solde</label>
+                                                        <input class="form-control" [(ngModel)]="ancien_solde"
+                                                            name="ancien_solde" type="text" style="width: 30%;">
+
+                                                    </div>
+
+
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="col-12">
+                                            <button class="btn btn-success m-1" (click)="addChanges()"> Enregistrer
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" (click)="closeModal()" style="float: right;">Fermer</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>

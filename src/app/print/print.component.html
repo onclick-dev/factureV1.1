@@ -1,0 +1,185 @@
+ 
+ <div class="container">
+    <body >
+        <button onClick="imprimer('sectionAimprimer')">Imprimer</button>
+        <div id='sectionAimprimer'>
+        <div id="page-wrap">
+          <h2 style="text-align: center;;font-size: 50px;color:#235689;">Facture</h2>
+            <h4 style="text-align: right;font-size: 12px;color: rgb(228, 73, 26);padding-right: 106px;">Numéro Facture :{{data.Numero}}</h4>
+            <h4 style="text-align: right;font-size: 12px;color:#235689;padding-right: 150px;">Date : {{data.created_at | date: 'dd/MM/yyyy'}}</h4>
+       
+      <div class="row" style="display: inline-flex;padding-bottom: 12px;margin-right: 0px;margin-left: 0px;">
+        <div class="col-sm-8" style="padding-right: 45px;width: 75%;">
+          <div class="logo pull-left">
+            <a><img src="assets/images/Logo.png" alt="" style="width: 70%;padding-bottom: 2px;" /></a>
+            <p style="font-size: 13px solid!important;text-align: left;margin:0px!important;padding-right: 110px;">Av. Ribat Im. Meliane La Corniche<br>
+              3 éme Etage Bur N° 5 4000 Sousse<br>I_unique:1623589PAM000</p>
+          </div>
+        </div>
+      
+        <div class="col-sm-4" style="width: 60%;padding-top:25px;font-size: 12px!important;padding-bottom: 5px;padding-right: 105px;">
+          <div id="identity" >
+            <div>
+                <div style="border: 1px solid;padding:7px;border-radius: 6%;">
+                    <p >Facturé à : {{data.Societe}}<br>
+                        Adresse: {{data.Adresse}}<br>
+                        I. Unique: {{data.I_unique}}</p>
+                </div>
+            </div>
+                </div>
+        </div>
+      
+      </div>
+                  
+                  
+               
+                  
+                  <table id="items" style="text-align: center;">
+                  
+                    <tr>
+                      <th style="text-align: center;background: #b4d1e8;">Ref</th>
+                      <td colspan="2" class="total-line balance" style="text-align: center;font-size: 18px solid;background: #b4d1e8;">Designation</td>
+                      <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">Prix Unitaire</th>
+      
+                      <th style="text-align: center;background: #b4d1e8;">Honoraires</th>
+                    </tr>
+                    <tr class="item-row" *ngFor="let s of data1">
+                      <th>{{s.ref}}</th>            
+                      <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">{{s.designation}}</td>
+          
+                      <th style="text-align: center;background: #b4d1e8;">{{s.price | number:'1.3-3'}}</th>
+                  </tr>
+                 
+                
+                  <tr *ngFor='let c of data2'>
+          
+                      <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">{{c.descriptions}}</td>
+                      <th style="text-align: center;font-size: 18px solid;width: 26%;">{{c.prices | number:'1.3-3'}}</th>
+                      <th style="border: none;background: #b4d1e8;"></th>
+          
+                     
+                      
+                  </tr>
+               
+                  
+                    
+                  
+                    
+                    <tr id="hiderow">
+          
+                      <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;color: rgb(204, 27, 27);">Total Charge</td>
+                      <th style="text-align: center;font-size: 18px solid;width: 26%;color: rgb(204, 27, 27);" step="0.01">{{data.STHonoraires | number:'1.3-3'}}</th>
+                      <th style="border: none;background: #b4d1e8;"></th>
+          
+          
+                    </tr>
+        
+                    <tr>
+                      <td colspan="2" class="blank" style="border: none;"> </td>
+                      <td colspan="2" class="total-line" style="border: none;border: none;">Sous-Total Honoraires</td>
+                      <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">{{data.STHon | number:'1.3-3'}}</th>
+                </tr>
+                    <tr>
+                        <td colspan="2" class="blank" style="border: none;"> </td>
+                        <td colspan="2" class="total-line" style="border: none;border: none;">TOTAL H.TVA</td>
+                        <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">{{data.STHon | number:'1.3-3'}}</th>
+                  </tr>
+                  <tr>
+                      <td colspan="2" class="blank"> </td>
+                      <td colspan="2" class="total-line" style="border: none;color: rgb(204, 27, 27);border: none!important;">REMISE</td>
+                      <th style="text-align: center;font-size: 18px solid;color: rgb(204, 27, 27);background: #b4d1e8;">  {{data.REMISE | number:'1.3-3'}}
+                      </th>
+      
+                </tr>
+                <tr>
+                  <td colspan="2" class="blank"> </td>
+                  <td colspan="2" class="total-line" style="border: none;">SOUS-TOTAL</td>
+                  <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">{{data.STotal | number:'1.3-3'}}</th>
+            </tr>
+            <tr>
+              <td colspan="2" class="blank"> </td>
+              <td colspan="2" class="total-line" style="border: none;">TAUX DE T.V.A</td>
+              <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">{{data3.TVA }} %</th>
+          </tr>
+          <tr>
+              <td colspan="2" class="blank"> </td>
+              <td colspan="2" class="total-line" style="border: none;">T.V.A</td>
+              <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">{{data.ttva | number:'1.3-3'}}</th>
+          </tr>
+          <tr>
+              <td colspan="2" class="blank"> </td>
+              <td colspan="2" class="total-line" style="border: none;">T.FISCALE</td>
+              <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">0.600</th>
+          </tr>
+          <tr>
+              <td colspan="2" class="blank"> </td>
+              <td colspan="2" class="total-line" style="border: none;    border-bottom: hidden!important;">TOTAL</td>
+              <th id="montant" style="text-align: center;font-size: 18px solid;background: #b4d1e8;"  >{{data.total | number:'1.3-3'}}</th>
+          </tr>
+                  
+      
+                  </table>
+                  
+                  <div id="terms" style="font-size: 9px;display: grid;margin-top: 0px;">
+                      <div style="display: inline-flex;">
+      
+                          <h4 style="padding-right: 100px; font-size: 14px;">Mode de réglement:</h4>   <p style="padding-top: 12px;">{{data.payement}}</p>
+                          <div id="conversion" >&nbsp;</div>
+      
+          
+                      </div>
+          
+                      <div style="display: inline-flex;">
+      
+                          <h4 style="padding-right: 40px;font-size: 14px">arreté la présente facture à:</h4>   <p style="padding-top: 12px;" id="conversion" >{{data.enlettre}}</p>
+          
+                           </div>
+                           <textarea id="address" style="padding-top: 1px;border: 1px solid;width:240px;height: 55px;margin-top: 0px;margin-left: 268px;margin-bottom: 20px;">Caché & Signatute</textarea>
+      
+                           <div class="foot" style="display:flex;">
+         
+                        
+                        
+                          </div>
+      
+                    </div>
+                  
+                    <div class="footer-widget" style="padding-top: 0px;">
+                      <div class="footer-top">
+                        <div class="container">
+                          <div class="row" style="display: inline-flex;">
+                            <div class="col-sm-2" style="padding-right: 0px!important;">
+                                  <a ><img src="assets/images/Logo.png" alt="" style="width: 45%"/></a>
+                              </div>
+                         
+                            <div class="col-sm-12" style="padding-left: 2px!important;">
+                             
+                                <p class="pull-left" style="font-size: 7px;">M. +216 20 20 30 59-26 408 778 - Email: arine.conseil.affaire@gmail.com<br>
+                                    Adresse: Imm- El Mellane 3éme Etage Bur.3.5-Av,La Corniche Sousse <br>
+                                    Identifiant Unique: 1623589 P/A/M 000<br> </p>
+      
+                            
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+              
+                   
+      
+                  
+      
+                    <div >
+          
+                  
+                  </div>
+                  
+      
+              
+              </div>
+              </div>
+      
+        
+              
+          </body>
+ </div>

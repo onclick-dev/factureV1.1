@@ -1,0 +1,278 @@
+<div class="container">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <form [formGroup]="form" (submit)="submit('/factures')">
+  
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4>Nouvelle Facture</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+           <div id="page-wrap">
+             <h2 style="text-align: center;;font-size: 70px;color:#235689;">Facture</h2>
+             <div style="display: grid;float: right;padding-right: 100px;">
+               <input class="form-control" formControlName="Numero" type="text" style="float: right;padding-bottom: 4px;width: 65%;">
+               <input type="text" class="form-control" formControlName="date" placeholder="date"  style="float: right;width: 65%;"> 
+             </div>
+         
+         <div class="row" style="display: inline-flex;padding-bottom: 12px;margin-right: 0px;margin-left: 0px;">
+           <div class="col-sm-8" style="padding-right: 45px;width: 75%;">
+             <div class="logo pull-left">
+               <a><img src="assets/images/Logo.png" alt="" style="width: 70%;padding-bottom: 2px;" /></a>
+               <p style="font-size: 13px solid!important;text-align: center;margin:0px!important">Av. Ribat Im. Meliane La Corniche<br>
+                 3 éme Etage Bur N° 5 4000 Sousse<br></p>
+             </div>
+           </div>
+   
+           <div class="col-sm-4" style="width: 60%;padding-top:55px;font-size: 12px!important;padding-bottom: 5px;padding-right: 142px;">
+             <div id="identity" >
+               <div>
+                   <div style="border: 1px solid;padding:7px;border-radius: 6%;">
+                     <input type="text" class="form-control" formControlName="Societe"
+                     placeholder="societe" aria-label="Username" aria-describedby="basic-addon1">                             
+                     <input type="text" class="form-control" formControlName="adresse"
+                     placeholder="adresse" aria-label="Username" aria-describedby="basic-addon1">
+                     <input type="text" class="form-control" formControlName="unique"
+                     placeholder="unique" aria-label="Username" aria-describedby="basic-addon1">                        </div>
+               </div>
+                   </div>
+           </div>
+         
+         </div>
+       
+               <table id="items" style="text-align: center;"> 
+               
+                 <tr>
+                     <th style="text-align: center;background: #b4d1e8;">Ref</th>
+                     <td colspan="2" class="total-line balance" style="text-align: center;font-size: 18px solid;background: #b4d1e8;">Designation</td>
+                     <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">Prix Unitaire</th>
+   
+                     <th style="text-align: center;background: #b4d1e8;">Honoraires</th>
+                 </tr>
+                 <div formArrayName="honoraires">
+  <div>
+      
+  </div>
+  <div  *ngFor="let honoraire of honoraireFormGroup.controls; let i = index;">
+      <div   [formGroupName]="i" >
+          <tr class="item-row" >
+              <th style="text-align: center;"><input type="text" class="form-control" formControlName="ref"
+                placeholder="Refrence" aria-label="Username" aria-describedby="basic-addon1"></th>            
+              <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;"><input type="text" class="form-control" formControlName="des"
+                placeholder="Designation" aria-label="Username" aria-describedby="basic-addon1"></td>
+  
+              <th style="text-align: center;background: #b4d1e8;"><input type="text" class="form-control" formControlName="prix"
+                placeholder="Prix" aria-label="Username" aria-describedby="basic-addon1"></th>
+          </tr>
+        </div>
+   
+  </div>
+             
+  
+  
+  
+             </div >
+             
+               <tr >
+       
+                   <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">Statuts</td>
+                   <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="statut"
+                     placeholder="statut" aria-label="Username" aria-describedby="basic-addon1"></th>
+                   <th style="border: none;background: #b4d1e8;"></th>
+  
+       
+                  
+                   
+               </tr>
+               <tr >    
+       
+                   <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">API</td>
+                   <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="apii"
+                     placeholder="APII" aria-label="Username" aria-describedby="basic-addon1"></th>
+                   <th style="border: none;background: #b4d1e8;"></th>
+       
+                  
+                   
+               </tr>
+               <tr>
+       
+                   <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">Reservation</td>
+                   <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="reservation"
+                     placeholder="Reservation" aria-label="Username" aria-describedby="basic-addon1"></th>
+                   <th style="border: none;background: #b4d1e8;"></th>
+       
+                  
+                   
+               </tr>
+               <tr>
+       
+                 <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">Contrat</td>
+                 <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="contrat"
+                   placeholder="Contrat" aria-label="Username" aria-describedby="basic-addon1"></th>
+                 <th style="border: none;background: #b4d1e8;"></th>
+     
+                
+                 
+             </tr>
+             <tr>
+       
+               <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">RNE</td>
+               <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="rne"
+                 placeholder="RNE" aria-label="Username" aria-describedby="basic-addon1"></th>
+               <th style="border: none;background: #b4d1e8;"></th>
+   
+              
+               
+           </tr>
+           <tr>
+       
+             <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">RC</td>
+             <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="rc"
+               placeholder="RC" aria-label="Username" aria-describedby="basic-addon1"></th>
+             <th style="border: none;background: #b4d1e8;"></th>
+  
+            
+             
+         </tr>
+         <tr>
+       
+           <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;">Code douane</td>
+           <th style="text-align: center;font-size: 18px solid;width: 26%;"><input type="text" class="form-control" formControlName="douane"
+             placeholder="code douane" aria-label="Username" aria-describedby="basic-addon1"></th>
+           <th style="border: none;background: #b4d1e8;"></th>
+  
+          
+           
+       </tr>
+                 
+               
+                 
+                 <tr id="hiderow">   
+       
+                   <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;color: rgb(204, 27, 27);">Total Charge</td>
+                   <th style="text-align: center;font-size: 18px solid;width: 26%;color: rgb(204, 27, 27);"><input type="text" class="form-control" formControlName="totalcharge"
+                     placeholder="total charge" aria-label="Username" aria-describedby="basic-addon1"></th>
+                   <th style="border: none;background: #b4d1e8;"></th>
+       
+       
+                 </tr>
+                 <tr id="hiderow">
+       
+                   <td colspan="3" class="total-line balance" style="text-align: center;font-size: 18px solid;color:#235689 ;">Sous-Total Honoraires</td>
+                   <th style="text-align: center;font-size: 18px solid;color:#235689 ;"><input type="text" class="form-control" formControlName="STHonoraires"
+                     placeholder="Sous total honoraire" aria-label="Username" aria-describedby="basic-addon1"></th>
+                   <th style="text-align: center;font-size: 18px solid;border: none;background: #b4d1e8;"></th>
+   
+       
+       
+                 </tr>
+                 <tr>
+                     <td colspan="2" class="blank" style="border: none;"> </td>
+                     <td colspan="2" class="total-line" style="border: none;border: none;">TOTAL H.TVA</td>
+                     <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;"><input type="text" class="form-control" formControlName="STHon"
+                       placeholder="total hors TVA" aria-label="Username" aria-describedby="basic-addon1"></th>
+               </tr>
+               <tr>
+                   <td colspan="2" class="blank"> </td>
+                   <td colspan="2" class="total-line" style="border: none;color: rgb(204, 27, 27);border: none!important;">REMISE</td>
+                   <th style="text-align: center;font-size: 18px solid;color: rgb(204, 27, 27);background: #b4d1e8;"><input type="text" class="form-control" formControlName="REMISE"
+                     placeholder="REMISE" aria-label="Username" aria-describedby="basic-addon1"></th>
+             </tr>
+             <tr>
+               <td colspan="2" class="blank"> </td>
+               <td colspan="2" class="total-line" style="border: none;">SOUS-TOTAL</td>
+               <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;"><input type="text" class="form-control" formControlName="sous_total"
+                 placeholder="Sous total " aria-label="Username" aria-describedby="basic-addon1"></th>
+         </tr>
+         <tr>
+           <td colspan="2" class="blank"> </td>
+           <td colspan="2" class="total-line" style="border: none;">TAUX DE T.V.A</td>
+           <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">19%</th>
+       </tr>
+       <tr>
+           <td colspan="2" class="blank"> </td>
+           <td colspan="2" class="total-line" style="border: none;">T.V.A</td>
+           <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;"><input type="text" class="form-control" formControlName="ttva"
+             placeholder="TVA " aria-label="Username" aria-describedby="basic-addon1"></th>
+       </tr>
+       <tr>
+           <td colspan="2" class="blank"> </td>
+           <td colspan="2" class="total-line" style="border: none;">T.FISCALE</td>
+           <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;">0.6</th>
+       </tr>
+       <tr>
+           <td colspan="2" class="blank"> </td>
+           <td colspan="2" class="total-line" style="border: none;">TOTAL</td>
+           <th style="text-align: center;font-size: 18px solid;background: #b4d1e8;"><input type="text" class="form-control" formControlName="total"
+             placeholder="total " aria-label="Username" aria-describedby="basic-addon1"></th>
+       </tr>
+     </table>
+               
+               <div id="terms" style="font-size: 11px;display: grid;">
+                   <div style="display: inline-flex;">
+                       <h4 style="padding-right: 100px;">Mode de réglement:</h4>   <p>Espéce</p>
+       
+                   </div>
+       
+                   <div style="display: inline-flex;">
+                       <h4 style="padding-right: 40px;">arreté la présente facture à:</h4>   <p style="font-size: 13px solid!important;"><input type="text" class="form-control" formControlName="enlettre"
+                         placeholder="total à payer " aria-label="Username" aria-describedby="basic-addon1"></p>
+       
+                        </div>
+                        <textarea id="address" style="padding-top: 4px;border: 1px solid;width:260px;height: 75px;margin-top: 30px;margin-left: 268px;margin-bottom: 20px;">Caché & Signatute</textarea>
+   
+                        <div class="foot" style="display:flex;">
+      
+                     
+                     
+                       </div>
+   
+                 </div>
+               
+                 <div class="footer-widget" style="padding-top: 35px;">
+                   <div class="footer-top">
+                     <div class="container">
+                       <div class="row" style="display: inline-flex;">
+                         <div class="col-sm-2" style="padding-right: 0px!important;">
+                                                      <a ><img src="assets/images/Logo.png" alt="" style="width: 45%"/></a>
+
+                           </div>
+                      
+                         <div class="col-sm-12" style="padding-left: 2px!important;">
+                          
+                             <p class="pull-left" style="font-size: 7px;">M. +216 20 20 30 59-26 408 778 - Email: arine.conseil.affaire@gmail.com<br>
+                                 Adresse: Imm- El Mellane 3éme Etage Bur.3.5-Av,La Corniche Sousse <br>
+                                 Identifiant Unique: 1623589 P/A/M 000<br> </p>
+   
+                         
+                       </div>
+                       </div>
+                     </div>
+                   </div>
+               </div>
+                
+                
+               
+   
+                 <div >
+       
+               
+               </div>
+               
+             
+           
+           </div>
+           
+  
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-primary m-1" type="button" (click)="addHonoraire()"> Add honoraire </button>
+  
+              <button   type="submit" data-dismiss="modal" 
+                  class="btn btn-primary">Save changes</button>
+          </div>
+      </div>
+      </form>
+  </div>
+  </div>
+  

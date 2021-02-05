@@ -1,0 +1,59 @@
+.input-group {
+  position: relative;
+  display: inline-flex;
+  border-collapse: separate;
+  padding-bottom: 26px;
+  width: 100%;
+}
+
+.edit {
+  display: inline-flex;
+}
+
+.edit a {
+  padding-left: 10px;
+}
+
+.fa-lg {
+  font-size: 1.33333333em;
+  line-height: .75em;
+  vertical-align: -15%;
+  padding-top: 10px;
+  padding-right: 5px;
+}
+
+.card {
+  background-color: #f0f0e9;
+  padding: 7px;
+  padding-left: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  opacity: 0.8;
+
+}
+
+.card-title{
+  padding-bottom: 30px;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-right: 10px;
+  padding-top: 9px;
+}
+#cart_items {
+  background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)) , url("/assets/images/about.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  background-position: center center;
+  background-attachment: fixed;
+  padding-bottom: 20px;
+  height: 600px;
+}
+

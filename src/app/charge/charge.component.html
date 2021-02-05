@@ -1,0 +1,166 @@
+<section id="cart_items">
+    <div class="container">
+        <div style="padding-top: 15px;">
+
+        <a class="btn btn-primary" href="" data-toggle="modal" data-target="#addChargeModal">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            Ajouter charge</a>
+            </div>
+        <!------------------------- Honoraire list Table ------------------------------------------------>
+     
+ <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Listes des charges</h2>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th *ngFor="let c of headersTable" scope="col">
+                                        <div>{{c}}</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of data">
+                                    <td *ngFor="let column of headersTable">
+                                        <div [ngSwitch]="column">
+                                            <div *ngSwitchCase="'edit'">
+                                                <div class="edit">
+                                                    <a href="" (click)="getCurrentCharge(row['id_ch'])" data-toggle="modal" data-target="#updateChargeModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
+                                                    <a (click)="deleteChage(row['id_ch'])"><i class="fa fa-trash fa-lg"
+                                                            aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                          
+                                            <div *ngSwitchDefault>{{row[column]}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!------------------------- END client list Table ------------------------------------>
+
+        <!--------------------------- addClientModal ----------------------------------------->
+        <div class="modal fade bd-example-modal-lg" id="addChargeModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nouveau charge</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                             
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Designations"
+                                            placeholder="Designations" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-usd" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" [formControl]="Prix" class="form-control" placeholder="Prix"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                             
+
+                            </div>
+                       
+                       
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" (click)="addCharge()" data-dismiss="modal"
+                            class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!--------------------------- updateClientModal ----------------------------------------->
+    <div class="modal fade bd-example-modal-lg" id="updateChargeModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>Nouveau charge</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                     
+                        <div class="col-sm-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" [(ngModel)]="data4.Designations"
+                                    placeholder="Designations" aria-label="Username"
+                                    aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <i class="fa fa-usd" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <input type="text" [(ngModel)]="data4.Prix" class="form-control" placeholder="Prix"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                     
+
+                    </div>
+               
+               
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" (click)="updateCharge()" data-dismiss="modal"
+                  class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+</section>

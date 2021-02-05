@@ -1,0 +1,147 @@
+
+
+.input-group {
+  position: relative;
+  display: inline-flex;
+  border-collapse: separate;
+  padding-bottom: 26px;
+  width: 100%;
+}
+
+
+
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 5px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/*
+	 CSS-Tricks Example
+	 by Chris Coyier
+	 http://css-tricks.com
+*/
+
+* {  padding: 0; }
+body { font: 14px/1.4 'Montserrat', sans-serif; }
+#page-wrap { width: 700px; margin: 0 auto; }
+
+textarea { border: 0; font: 16px solid 'Montserrat', sans-serif; overflow: hidden; resize: none; }
+table { border-collapse: collapse; }
+table td, table th { border: 1px solid black; padding: 4px; }
+
+#header { height: 40px; width: 100%; margin: 20px 0; background: rgb(255, 255, 255); text-align: center; color: rgb(136, 90, 221); font: bold 50px 'Montserrat', sans-serif; text-decoration: uppercase;  padding: 8px 0px; }
+
+#address { width: 320px; height: 200px; float: left;background-color: #fff;color: #080808;line-height: 27px;
+}
+#customer { overflow: hidden; }
+
+#logo { text-align: right; float: right; position: relative; margin-top: 25px; border: 1px solid #fff; max-width: 540px; max-height: 100px; overflow: hidden; }
+#logo:hover, #logo.edit { border: 1px solid #000; margin-top: 0px; max-height: 125px; }
+#logoctr { display: none; }
+#logo:hover #logoctr, #logo.edit #logoctr { display: block; text-align: right; line-height: 25px; background: #fff; padding: 0 5px; }
+#logohelp { text-align: left; display: none; font-style: 'Montserrat', sans-serif; padding: 10px 5px;}
+#logohelp input { margin-bottom: 5px; }
+.edit #logohelp { display: block; }
+.edit #save-logo, .edit #cancel-logo { display: inline; }
+.edit #image, #save-logo, #cancel-logo, .edit #change-logo, .edit #delete-logo { display: none; }
+#customer-title { font-size: 20px; font-weight: bold; float: left; }
+
+#meta { margin-top: 1px; width: 300px; float: right; }
+#meta td { text-align: right;  }
+#meta td.meta-head { text-align: left; background: #fff; }
+#meta td textarea { width: 90%; height: 20px; text-align: right; }
+
+#items { clear: both; width: 86%; margin: 7px 0 0 0; border: 1px solid black; }
+#items th { background: #fff; }
+#items textarea { width: 80px; height: 50px; }
+#items tr.item-row td {  vertical-align: top; }
+#items td.description { width: 300px; }
+#items td.item-name { width: 175px; }
+#items td.description textarea, #items td.item-name textarea { width: 100%; }
+#items td.total-line { border-right: 0; text-align: right;font-size: 18px solid!important; ;padding-right: 10px!important; }
+#items td.total-value { border-left: 0; padding: 10px; }
+#items td.total-value textarea { height: 20px; background: none; }
+#items td.balance { background: #fff; }
+#items td.blank { border: 0; border-left: hidden!important;border-bottom: hidden;}
+
+#terms { text-align: center;     margin-top: 20px;}
+#terms h5 { text-transform: uppercase; font: 13px 'Montserrat', sans-serif; letter-spacing: 10px; border-bottom: 1px solid black; padding: 0 0 8px 0; margin: 0 0 8px 0; }
+#terms textarea { width: 100%; text-align: center;}
+
+textarea:hover, textarea:focus, #items td.total-value textarea:hover, #items td.total-value textarea:focus, .delete:hover { background-color:#EEFF88; }
+
+.delete-wpr { position: relative; }
+.delete { display: block; color: #000; text-decoration: none; position: absolute; background: #ffffff; font-weight: bold; padding: 0px 3px; border: 1px solid; top: -6px; left: -22px; font-family:'Montserrat', sans-serif; font-size: 12px; }
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 38px!important;
+}
+
+
+.user_info input, select, textarea {
+  background: #F0F0E9;
+  border: 0;
+  color: #696763;
+  padding: 5px;
+  width: 100%;
+  height: 35px;
+  border-radius: 0;
+  resize: none;
+}

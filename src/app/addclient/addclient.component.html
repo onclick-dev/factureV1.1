@@ -1,0 +1,403 @@
+<section id="cart_items">
+    <div class="container">
+        <div style="padding-top: 15px;">
+        <a class="btn btn-primary" href="" data-toggle="modal" data-target="#addClientModal">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            Ajouter client</a>
+            </div>
+        <!---------------
+            
+            ---------- client list Table ------------------------------------------------>
+        <div class="row" style="margin-right: -350px!important;margin-left: -350px!important;">
+
+           
+            <div class="col-sm-12">
+              
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Listes des clients</h2>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th *ngFor="let c of headersTable" scope="col">
+                                        <div>{{c}}</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let row of data">
+                                    <td *ngFor="let column of headersTable">
+                                        <div [ngSwitch]="column">
+                                            <div *ngSwitchCase="'edit'">
+                                                <div class="edit">
+                                                    <a href="" (click)="getCurrentClient(row['id_client'])" data-toggle="modal" data-target="#updateClientCorrectiveModal"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></a>
+                                                    <a (click)="getFacturesClient(row['id_client'])" data-toggle="modal" data-target="#factureClientModal"><i class="fa fa-file-text fa-lg" aria-hidden="true"></i></a>
+                                                    <a (click)="deleteClient(row['id_client'])"><i class="fa fa-trash fa-lg"
+                                                            aria-hidden="true"></i></a>
+                                                </div>
+                                            </div>
+                                      
+                                            <div *ngSwitchDefault>{{row[column]}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!------------------------- END client list Table ------------------------------------>
+
+        <!--------------------------- addClientModal ----------------------------------------->
+        <div class="modal fade bd-example-modal-lg" id="addClientModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>Nouveau Client</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span id="basic-addon1">
+                                                <i class="fa fa-building fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Societe"
+                                            placeholder="Societe" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="I_unique"
+                                            placeholder="I_unique" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" [formControl]="Tel" class="form-control" placeholder="Tel"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Email"
+                                            placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span id="basic-addon1">
+                                                <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Adresse"
+                                            placeholder="Adresse" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Gerant"
+                                            placeholder="Gerant" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                        
+                                <div class="col-sm-4">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-money" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Capital"
+                                            placeholder="Capital" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span id="basic-addon1"><i class="fa fa-balance-scale" aria-hidden="true"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Forme_juridique"
+                                            placeholder="Forme_juridique" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Exonore"
+                                            placeholder="Exonore" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span id="basic-addon1"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="TVA" placeholder="TVA"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-handshake-o" aria-hidden="true"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" [formControl]="Fodec"
+                                            placeholder="Fodec" aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" (click)="addClient()" data-dismiss="modal"
+                            class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <!--------------------------- factureClientModal ----------------------------------------->
+      <div class="modal fade bd-example-modal-lg" id="factureClientModal" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4>Liste des factures</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th *ngFor="let s of headersTables" scope="col">
+                                <div>{{s}}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of data2" >
+                            <td *ngFor="let column of headersTables">
+                                <div [ngSwitch]="column">
+                                    <div *ngSwitchCase="'print'">
+                                        <div class="edit">
+                                            <a [routerLink]="['/print', row['id'] ]"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                     
+                                        </div>
+                                    </div>
+                                    <div *ngSwitchCase="'created_at'">{{row[column] | date: 'dd/MM/yyyy HH:MM:ss'}}</div>
+
+                                    <div *ngSwitchDefault>{{row[column]}}</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" (click)="addClient()" data-dismiss="modal"
+                      class="btn btn-primary">Save changes</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="modal fade bd-example-modal-lg" id="updateClientCorrectiveModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h4>update Client</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span id="basic-addon1">
+                                      <i class="fa fa-building fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.Societe" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-dot-circle-o fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.I_unique" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-phone fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.Tel" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text" class="form-control" [(ngModel)]="data4.Email" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span id="basic-addon1">
+                                      <i class="fa fa-map-marker fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.Adresse" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1">
+                                      <i class="fa fa-user-circle-o fa-lg" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text"  name="data4.Gerant" [(ngModel)]="data4.Gerant" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="row">
+              
+                      <div class="col-sm-4">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-money" aria-hidden="true"></i>
+                                  </span>
+                              </div>
+                              <input type="text" class="form-control"[(ngModel)]="data4.Capital" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span id="basic-addon1"><i class="fa fa-balance-scale" aria-hidden="true"></i></span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.Forme_juridique" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-tachometer" aria-hidden="true"></i></span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.Exonore" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+
+                  </div>
+                  <div class="row">
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span id="basic-addon1"><i class="fa fa-credit-card-alt" aria-hidden="true"></i></span>
+                              </div>
+                              <input type="text"  class="form-control" [(ngModel)]="data4.TVA" aria-label="Username" aria-describedby="basic-addon1">
+                          </div>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-handshake-o" aria-hidden="true"></i></span>
+                              </div>
+                              <input type="text" class="form-control" [(ngModel)]="data4.Fodec" aria-label="Username" aria-describedby="basic-addon1" >
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" (click)="updateClient()" data-dismiss="modal"
+                  class="btn btn-primary">Save changes</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+    </div>
+</section>
